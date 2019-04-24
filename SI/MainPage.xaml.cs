@@ -19,7 +19,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SI
 {
-    
+
     public sealed partial class MainPage : Page
     {
         Play play;
@@ -30,9 +30,26 @@ namespace SI
             play = new Play();
         }
 
-        private void Canvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
+        private void Canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             play.DrawGame(args.DrawingSession);
         }
+
+        private void Canvas_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+        {
+            play.Update();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
     }
 }
