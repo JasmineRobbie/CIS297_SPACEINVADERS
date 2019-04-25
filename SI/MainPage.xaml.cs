@@ -55,6 +55,10 @@ namespace SI
             {
                 play.SetPaddleTravelingRightward(true);
             }
+            else if (e.VirtualKey == Windows.System.VirtualKey.Space)
+            {
+                play.SetShooting(true);
+            }
         }
 
         private void Canvas_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
@@ -66,6 +70,10 @@ namespace SI
             else if (e.VirtualKey == Windows.System.VirtualKey.Right)
             {
                 play.SetPaddleTravelingRightward(false);
+            }
+            else if (e.VirtualKey == Windows.System.VirtualKey.Space)
+            {
+                 play.SetShooting(false);
             }
         }
 
@@ -79,6 +87,9 @@ namespace SI
 
         }
 
+        private void Canvas_KeyDown_1(object sender, KeyRoutedEventArgs e)
+        {
 
+        }
     }
 }

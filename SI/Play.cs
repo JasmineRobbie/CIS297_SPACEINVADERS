@@ -24,16 +24,16 @@ namespace SI
         bool CollidesBottomEdge(int x, int y);
     }
 
-   // public interface IDestroyable : ICollidable
-   // { }
+    public interface IDestroyable : ICollidable
+    { }
 
 
     public class Play
     {
         private Sprite sprite;
-        private List<IDrawable> drawables;
+        public List<IDrawable> drawables;
         private ship PlayerShooter;
-        private Bullet bullet;
+        public Bullet bullet;
 
         public static int LEFT_EDGE = 10;
         public static int TOP_EDGE = 10;
@@ -43,8 +43,11 @@ namespace SI
         public Play()
         {
             drawables = new List<IDrawable>();
-            bullet = new Bullet(LEFT_EDGE + RIGHT_EDGE / 2, BOTTOM_EDGE, Colors.Red);
+
+     
+            bullet = new Bullet(10000,10000, Colors.Red);
             drawables.Add(bullet);
+            
 
             var leftWall = new Wall(LEFT_EDGE, TOP_EDGE, LEFT_EDGE, BOTTOM_EDGE, Colors.White);
             drawables.Add(leftWall);
@@ -54,7 +57,6 @@ namespace SI
 
             PlayerShooter = new ship(LEFT_EDGE + RIGHT_EDGE / 2, BOTTOM_EDGE, 75, 10, Colors.Red);
             drawables.Add(PlayerShooter);
-
 
             //List for all sprites
             List<Sprite> sprites = new List<Sprite>();
@@ -99,12 +101,20 @@ namespace SI
             PlayerShooter.TravelingRightward = travelingRightward;
         }
 
-
+        public void SetShooting(bool shooting)
+        {
+            PlayerShooter.Shooting = shooting;
+        }
 
 
         public void Update()
         {
-           // bullet.Y -= 1;
+            bullet.Y -= 3;
+            if (PlayerShooter.Shooting)
+            {
+                bullet.X = PlayerShooter.X + 35;
+                bullet.Y = PlayerShooter.Y;
+            }
             PlayerShooter.Update();
         }
 
@@ -130,6 +140,7 @@ namespace SI
             Y = y;
             Radius = radius;
             Color = color;
+            TravelingDownward = false;
         }
 
         public bool TravelingDownward { get; set; }
@@ -154,8 +165,6 @@ namespace SI
                 X += 1;
             }
         }
-
-
 
 
         public void Draw(CanvasDrawingSession canvas)
@@ -244,6 +253,7 @@ namespace SI
 
         public bool TravelingLeftward { get; set; }
         public bool TravelingRightward { get; set; }
+        public bool Shooting { get; set; }
 
         public ship(int x, int y, int width, int height, Color coloR)
         {
@@ -260,11 +270,29 @@ namespace SI
         {
             if (TravelingRightward)
             {
-                X += 1;
+                if (X >= 710)
+                {
+                    //STOP MOVING
+                }
+                else
+                {
+                    X += 2;
+                }
             }
             else if (TravelingLeftward)
             {
-                X -= 1;
+                if (X <= 10)
+                {
+                    //STOP MOVING
+                }
+                else
+                {
+                    X -= 2;
+                }
+            }
+            else if (Shooting)
+            {
+               
             }
         }
         public void Draw(CanvasDrawingSession canvas)
