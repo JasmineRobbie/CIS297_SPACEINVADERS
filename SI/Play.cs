@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-﻿
-=======
+
 ﻿using Microsoft.Graphics.Canvas;
 using System;
 using System.Collections.Generic;
@@ -26,8 +24,8 @@ namespace SI
         bool CollidesBottomEdge(int x, int y);
     }
 
-    public interface IDestroyable : ICollidable
-    { }
+   // public interface IDestroyable : ICollidable
+   // { }
 
 
     public class Play
@@ -320,4 +318,3 @@ namespace SI
 
 }
 
->>>>>>> Walls-and-ship

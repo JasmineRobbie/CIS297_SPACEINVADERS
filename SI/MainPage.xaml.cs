@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-﻿
-=======
+
 ﻿using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Collections.Generic;
@@ -84,5 +82,3 @@ namespace SI
 
     }
 }
-
->>>>>>> Walls-and-ship
