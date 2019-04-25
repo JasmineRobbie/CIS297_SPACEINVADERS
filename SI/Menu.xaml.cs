@@ -34,7 +34,7 @@ namespace SI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(HowToPlay));
         }
 
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
@@ -44,7 +44,7 @@ namespace SI
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(Credits));
         }
     }
 }

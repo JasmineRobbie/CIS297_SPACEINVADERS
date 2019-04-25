@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="SI.HowToPlay"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Height="58" Margin="0,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" SelectionChanged="TextBlock_SelectionChanged" FontSize="36" FocusVisualPrimaryBrush="Red" Foreground="#FF46FF00" FontWeight="Bold" FontFamily="Castellar"><Run Text="HOW TO PLAY:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+        <Button x:Name="button" Content="&lt;- BACK" HorizontalAlignment="Left" Margin="70,44,0,0" VerticalAlignment="Top" Height="43" Width="132" Foreground="#FF40FF00" FontSize="20" FontFamily="Castellar" Click="Button_Click"/>
+
+    </Grid>
+</Page>

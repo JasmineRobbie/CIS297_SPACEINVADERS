@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="SI.BlankPage1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+        <Button x:Name="button" Content="How To Play" HorizontalAlignment="Center" VerticalAlignment="Top" Height="48" Width="136" Click="Button_Click" FontFamily="Castellar" FontWeight="Bold" Margin="0,211,0,0"/>
+        <Button x:Name="button1" Content="Play!" HorizontalAlignment="Center" Margin="0,421,0,0" VerticalAlignment="Top" Height="48" Width="136" Click="Button1_Click" FontFamily="Castellar" FontWeight="Bold" FontSize="16"/>
+        <Button x:Name="button2" Content="Credits" HorizontalAlignment="Center" Margin="0,315,0,0" VerticalAlignment="Top" Width="136" Height="48" FontFamily="Castellar" FontSize="16" Click="Button2_Click"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="69" Margin="298,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="289" SelectionChanged="TextBlock_SelectionChanged" IsHitTestVisible="False" Text="MENU" FontSize="72" FontFamily="Castellar" Foreground="#FF6DFF10" FocusVisualPrimaryBrush="White" FocusVisualSecondaryBrush="#99FFFFFF" SelectionHighlightColor="#FF80FF00" FontWeight="Bold"/>
+
+
+    </Grid>
+</Page>
