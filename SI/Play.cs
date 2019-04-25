@@ -43,7 +43,7 @@ namespace SI
         public Play()
         {
             drawables = new List<IDrawable>();
-            bullet = new Bullet(LEFT_EDGE + RIGHT_EDGE / 2, BOTTOM_EDGE, Colors.White);
+            bullet = new Bullet(LEFT_EDGE + RIGHT_EDGE / 2, BOTTOM_EDGE, Colors.Red);
             drawables.Add(bullet);
 
             var leftWall = new Wall(LEFT_EDGE, TOP_EDGE, LEFT_EDGE, BOTTOM_EDGE, Colors.Blue);
@@ -104,7 +104,7 @@ namespace SI
 
         public void Update()
         {
-            bullet.Y -= 1;
+           // bullet.Y -= 1;
             PlayerShooter.Update();
         }
 
@@ -269,7 +269,10 @@ namespace SI
         }
         public void Draw(CanvasDrawingSession canvas)
         {
-            canvas.DrawRectangle(X, Y, Width, Height, color, 3);
+            canvas.DrawRectangle(X + 20, Y - 20, Width - 40, Height, color, 10);
+            canvas.DrawRectangle(X+10, Y-10, Width - 20, Height, color, 10);
+            canvas.DrawRectangle(X, Y, Width, Height, color, 10);
+            
         }
 
         public bool CollidesLeftEdge(int x, int y)

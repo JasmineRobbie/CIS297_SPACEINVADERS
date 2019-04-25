@@ -36,5 +36,10 @@ namespace SI
         {
             this.Frame.Navigate(typeof(BlankPage1));
         }
+
+        private void TextBlock1_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
