@@ -28,9 +28,6 @@ namespace SI
         {
             this.InitializeComponent();
             play = new Play();
-
-            Window.Current.CoreWindow.KeyDown += Canvas_KeyDown;
-            Window.Current.CoreWindow.KeyUp += Canvas_KeyUp;
         }
 
         private void Canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -38,28 +35,9 @@ namespace SI
             play.DrawGame(args.DrawingSession);
         }
 
-        private void Canvas_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
+        private void Canvas_Loaded(object sender, RoutedEventArgs e)
         {
-            if(e.VirtualKey == Windows.System.VirtualKey.Left)
-            {
-                play.SetPaddleTravelingLeftward(true);
-            }
-            else if(e.VirtualKey == Windows.System.VirtualKey.Right)
-            {
-                play.SetPaddleTravelingLeftward(true);
-            }
-        }
 
-        private void Canvas_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
-        {
-            if (e.VirtualKey == Windows.System.VirtualKey.Left)
-            {
-                play.SetPaddleTravelingLeftward(false);
-            }
-            else if (e.VirtualKey == Windows.System.VirtualKey.Right)
-            {
-                play.SetPaddleTravelingLeftward(false);
-            }
         }
 
         private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
