@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <canvas:CanvasControl x:Name="canvas" Draw="Canvas_Draw" KeyDown="Canvas_KeyDown_1" KeyUp="Canvas_KeyUp_1" />
+        <canvas:CanvasAnimatedControl x:Name="canvas" Draw="Canvas_Draw" Update="Canvas_Update" />
     </Grid>
 
 </Page>

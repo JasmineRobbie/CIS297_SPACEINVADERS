@@ -60,7 +60,10 @@ namespace SI
             PlayerShooter.TravelingRightWard = travelingRightward;
         }
 
-        
+        public void Update()
+        {
+            PlayerShooter.Update();
+        }
 
         public void DrawGame(CanvasDrawingSession canvas)
         {

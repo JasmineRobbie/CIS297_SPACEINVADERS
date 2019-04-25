@@ -29,36 +29,67 @@ namespace SI
             this.InitializeComponent();
             play = new Play();
 
-           
+            Window.Current.CoreWindow.KeyDown += Canvas_KeyDown;
+            Window.Current.CoreWindow.KeyUp += Canvas_KeyUp;
         }
 
-        private void Canvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
+        private void Canvas_Draw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             play.DrawGame(args.DrawingSession);
         }
 
-        private void Canvas_KeyDown_1(object sender, KeyRoutedEventArgs e)
+        private void Canvas_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Left)
+            if(e.VirtualKey == Windows.System.VirtualKey.Left)
             {
                 play.SetPaddleTravelingLeftward(true);
             }
-            else if (e.Key == Windows.System.VirtualKey.Right)
+            else if(e.VirtualKey == Windows.System.VirtualKey.Right)
             {
-                play.SetPaddleTravelingRightward(true);
+                play.SetPaddleTravelingLeftward(true);
             }
         }
 
-        private void Canvas_KeyUp_1(object sender, KeyRoutedEventArgs e)
+        private void Canvas_KeyUp(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
         {
-            if (e.Key == Windows.System.VirtualKey.Left)
+            if (e.VirtualKey == Windows.System.VirtualKey.Left)
             {
                 play.SetPaddleTravelingLeftward(false);
             }
-            else if (e.Key == Windows.System.VirtualKey.Right)
+            else if (e.VirtualKey == Windows.System.VirtualKey.Right)
             {
-                play.SetPaddleTravelingRightward(false);
+                play.SetPaddleTravelingLeftward(false);
             }
         }
+
+        private void Canvas_Update(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+        {
+            play.Update();
+        }
+
+        //private void Canvas_KeyDown_1(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
+        //{
+        //    if (e.VirtualKey == Windows.System.VirtualKey.Left)
+        //    {
+        //        play.SetPaddleTravelingLeftward(true);
+        //    }
+        //    else if (e.VirtualKey == Windows.System.VirtualKey.Right)
+        //    {
+        //        play.SetPaddleTravelingRightward(true);
+        //    }
+        //}
+
+        //private void Canvas_KeyUp_1(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
+        //{
+        //    if (e.VirtualKey == Windows.System.VirtualKey.Left)
+        //    {
+        //        play.SetPaddleTravelingLeftward(false);
+        //    }
+        //    else if (e.VirtualKey == Windows.System.VirtualKey.Right)
+        //    {
+        //        play.SetPaddleTravelingRightward(false);
+        //    }
+        //}
+
     }
 }
