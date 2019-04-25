@@ -204,7 +204,7 @@ namespace SI
     }
 
     //Add idestroyable
-    public class Sprite : IDrawable, ICollidable
+    public class Sprite : IDrawable, ICollidable, IDestroyable
     {
         public int X { get; set; }
         public int Y { get; set; }
