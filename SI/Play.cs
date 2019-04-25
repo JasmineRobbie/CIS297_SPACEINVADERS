@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System;
 using System.Collections.Generic;
+using Windows.Gaming.Input;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace SI
 
     public interface ICollidable
     {
+        bool Collides(int x, int y, int width, int height);
         bool CollidesLeftEdge(int x, int y);
         bool CollidesRightEdge(int x, int y);
         bool CollidesTopEdge(int x, int y);
@@ -24,20 +26,23 @@ namespace SI
     public interface IDestroyable : ICollidable
     { }
 
+
     public class Play
     {
-        private Bullet bullet;
-        private ship PlayerShooter; 
+        private Sprite sprite;
         private List<IDrawable> drawables;
+        private ship PlayerShooter;
+        private Bullet bullet;
+
         public static int LEFT_EDGE = 10;
         public static int TOP_EDGE = 10;
         public static int RIGHT_EDGE = 790;
         public static int BOTTOM_EDGE = 450;
-        
+
         public Play()
         {
             drawables = new List<IDrawable>();
-            bullet = new Bullet(100, 100, Colors.White);
+            bullet = new Bullet(LEFT_EDGE + RIGHT_EDGE / 2, BOTTOM_EDGE, Colors.White);
             drawables.Add(bullet);
 
             var leftWall = new Wall(LEFT_EDGE, TOP_EDGE, LEFT_EDGE, BOTTOM_EDGE, Colors.Blue);
@@ -46,9 +51,42 @@ namespace SI
             var rightWall = new Wall(RIGHT_EDGE, TOP_EDGE, RIGHT_EDGE, BOTTOM_EDGE, Colors.Blue);
             drawables.Add(rightWall);
 
-            PlayerShooter = new ship(LEFT_EDGE + RIGHT_EDGE / 2, BOTTOM_EDGE, 50, 5, Colors.Red);
+            PlayerShooter = new ship(LEFT_EDGE + RIGHT_EDGE / 2, BOTTOM_EDGE, 75, 10, Colors.Red);
             drawables.Add(PlayerShooter);
+
+
+            //List for all sprites
+            List<Sprite> sprites = new List<Sprite>();
+            sprites.Add(sprite = new Sprite(100, 100, Colors.White));
+            sprites.Add(sprite = new Sprite(100, 200, Colors.White));
+            sprites.Add(sprite = new Sprite(100, 300, Colors.White));
+            sprites.Add(sprite = new Sprite(200, 100, Colors.White));
+            sprites.Add(sprite = new Sprite(200, 200, Colors.White));
+            sprites.Add(sprite = new Sprite(200, 300, Colors.White));
+            sprites.Add(sprite = new Sprite(300, 100, Colors.White));
+            sprites.Add(sprite = new Sprite(300, 200, Colors.White));
+            sprites.Add(sprite = new Sprite(300, 300, Colors.White));
+            sprites.Add(sprite = new Sprite(400, 100, Colors.White));
+            sprites.Add(sprite = new Sprite(400, 200, Colors.White));
+            sprites.Add(sprite = new Sprite(400, 300, Colors.White));
+            sprites.Add(sprite = new Sprite(500, 100, Colors.White));
+            sprites.Add(sprite = new Sprite(500, 200, Colors.White));
+            sprites.Add(sprite = new Sprite(500, 300, Colors.White));
+            sprites.Add(sprite = new Sprite(600, 100, Colors.White));
+            sprites.Add(sprite = new Sprite(600, 200, Colors.White));
+            sprites.Add(sprite = new Sprite(600, 300, Colors.White));
+            sprites.Add(sprite = new Sprite(700, 100, Colors.White));
+            sprites.Add(sprite = new Sprite(700, 200, Colors.White));
+            sprites.Add(sprite = new Sprite(700, 300, Colors.White));
+
+
+            //Going through list and drawing all sprites
+            for (int i = 0; i < sprites.Count; i++)
+            {
+                drawables.Add(sprites[i]);
+            }
         }
+
 
         public void SetPaddleTravelingLeftward(bool travelingLeftward)
         {
@@ -57,11 +95,15 @@ namespace SI
 
         public void SetPaddleTravelingRightward(bool travelingRightward)
         {
-            PlayerShooter.TravelingRightWard = travelingRightward;
+            PlayerShooter.TravelingRightward = travelingRightward;
         }
+
+
+
 
         public void Update()
         {
+            bullet.Y -= 1;
             PlayerShooter.Update();
         }
 
@@ -81,7 +123,55 @@ namespace SI
         public int Radius { get; set; }
         public Color Color { get; set; }
 
-        public Bullet(int x, int y, Color color, int radius = 5)
+        public Bullet(int x, int y, Color color, int radius = 10)
+        {
+            X = x;
+            Y = y;
+            Radius = radius;
+            Color = color;
+        }
+
+        public bool TravelingDownward { get; set; }
+        public bool TravelingLeftward { get; set; }
+
+        public void Update()
+        {
+            if (TravelingDownward)
+            {
+                Y += 1;
+            }
+            else
+            {
+                Y -= 1;
+            }
+            if (TravelingLeftward)
+            {
+                X -= 1;
+            }
+            else
+            {
+                X += 1;
+            }
+        }
+
+
+
+
+        public void Draw(CanvasDrawingSession canvas)
+        {
+            canvas.DrawEllipse(X, Y, Radius, Radius, Color, 5);
+        }
+    }
+
+    //Add idestroyable
+    public class Sprite : IDrawable
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Radius { get; set; }
+        public Color Color { get; set; }
+
+        public Sprite(int x, int y, Color color, int radius = 20)
         {
             X = x;
             Y = y;
@@ -91,19 +181,10 @@ namespace SI
 
         public void Draw(CanvasDrawingSession canvas)
         {
-            canvas.DrawEllipse(X, Y, Radius, Radius, Color, 3);
+            canvas.DrawEllipse(X, Y, Radius, Radius, Color, 5);
         }
+
     }
-
-    public class Sprite : IDrawable
-    {
-        public void Draw(CanvasDrawingSession canvas)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-
 
     public class Wall : IDrawable, ICollidable
     {
@@ -142,9 +223,12 @@ namespace SI
         {
             return x >= x1 && x <= x2 && y + WIDTH == y1;
         }
-        
-    }
 
+        public bool Collides(int x, int y, int width, int height)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 
     public class ship : IDrawable, ICollidable
@@ -154,9 +238,11 @@ namespace SI
         public int Width { get; set; }
 
         public int Height { get; set; }
+
         public Color color { get; set; }
+
         public bool TravelingLeftward { get; set; }
-        public bool TravelingRightWard { get; set; }
+        public bool TravelingRightward { get; set; }
 
         public ship(int x, int y, int width, int height, Color coloR)
         {
@@ -166,21 +252,20 @@ namespace SI
             Height = height;
             color = coloR;
             TravelingLeftward = false;
-            TravelingRightWard = false;
+            TravelingRightward = false;
         }
 
         public void Update()
         {
-            if(TravelingRightWard)
+            if (TravelingRightward)
             {
                 X += 1;
             }
-            else if(TravelingLeftward)
+            else if (TravelingLeftward)
             {
                 X -= 1;
             }
         }
-
         public void Draw(CanvasDrawingSession canvas)
         {
             canvas.DrawRectangle(X, Y, Width, Height, color, 3);
@@ -192,7 +277,7 @@ namespace SI
         }
         public bool CollidesRightEdge(int x, int y)
         {
-            return x>= X && x <= X + Width && y >= Y && y <= Y + Height;
+            return x >= X && x <= X + Width && y >= Y && y <= Y + Height;
         }
         public bool CollidesTopEdge(int x, int y)
         {
@@ -223,5 +308,12 @@ namespace SI
         {
             return x >= X && x <= X + Width && y >= Y && y <= Y + Height;
         }
+
+        public bool Collides(int x, int y, int width, int height)
+        {
+            throw new NotImplementedException();
+        }
     }
+
 }
+

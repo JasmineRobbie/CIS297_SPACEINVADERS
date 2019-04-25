@@ -15,11 +15,12 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace SI
 {
-    
+
     public sealed partial class MainPage : Page
     {
         Play play;
@@ -38,15 +39,20 @@ namespace SI
             play.DrawGame(args.DrawingSession);
         }
 
+        private void Canvas_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Canvas_KeyDown(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
         {
-            if(e.VirtualKey == Windows.System.VirtualKey.Left)
+            if (e.VirtualKey == Windows.System.VirtualKey.Left)
             {
                 play.SetPaddleTravelingLeftward(true);
             }
-            else if(e.VirtualKey == Windows.System.VirtualKey.Right)
+            else if (e.VirtualKey == Windows.System.VirtualKey.Right)
             {
-                play.SetPaddleTravelingLeftward(true);
+                play.SetPaddleTravelingRightward(true);
             }
         }
 
@@ -58,7 +64,7 @@ namespace SI
             }
             else if (e.VirtualKey == Windows.System.VirtualKey.Right)
             {
-                play.SetPaddleTravelingLeftward(false);
+                play.SetPaddleTravelingRightward(false);
             }
         }
 
@@ -67,29 +73,12 @@ namespace SI
             play.Update();
         }
 
-        //private void Canvas_KeyDown_1(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
-        //{
-        //    if (e.VirtualKey == Windows.System.VirtualKey.Left)
-        //    {
-        //        play.SetPaddleTravelingLeftward(true);
-        //    }
-        //    else if (e.VirtualKey == Windows.System.VirtualKey.Right)
-        //    {
-        //        play.SetPaddleTravelingRightward(true);
-        //    }
-        //}
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
-        //private void Canvas_KeyUp_1(Windows.UI.Core.CoreWindow sender, Windows.UI.Core.KeyEventArgs e)
-        //{
-        //    if (e.VirtualKey == Windows.System.VirtualKey.Left)
-        //    {
-        //        play.SetPaddleTravelingLeftward(false);
-        //    }
-        //    else if (e.VirtualKey == Windows.System.VirtualKey.Right)
-        //    {
-        //        play.SetPaddleTravelingRightward(false);
-        //    }
-        //}
+        }
+
 
     }
 }
+
