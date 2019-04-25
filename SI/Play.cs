@@ -34,7 +34,7 @@ namespace SI
         public List<IDrawable> drawables;
         private ship PlayerShooter;
         public Bullet bullet;
-
+        List<Sprite> sprites = new List<Sprite>();
         public static int LEFT_EDGE = 10;
         public static int TOP_EDGE = 10;
         public static int RIGHT_EDGE = 790;
@@ -59,7 +59,7 @@ namespace SI
             drawables.Add(PlayerShooter);
 
             //List for all sprites
-            List<Sprite> sprites = new List<Sprite>();
+            
             sprites.Add(sprite = new Sprite(100, 100, Colors.White));
             sprites.Add(sprite = new Sprite(100, 200, Colors.White));
             sprites.Add(sprite = new Sprite(100, 300, Colors.White));
@@ -109,11 +109,41 @@ namespace SI
 
         public void Update()
         {
+            bool hit = false;
             bullet.Y -= 3;
             if (PlayerShooter.Shooting)
             {
                 bullet.X = PlayerShooter.X + 35;
                 bullet.Y = PlayerShooter.Y;
+            }
+            List<IDrawable> InvadersToDestroy = new List<IDrawable>();
+            foreach(var sprite in sprites)
+            {
+                ICollidable collidable = sprite as ICollidable;
+                if(collidable!=null)
+                {
+                    if(collidable.Collides(bullet.X, bullet.Y, bullet.Radius, bullet.Radius))
+                    {
+                        hit = true;
+                    }
+                    if(hit)
+                    {
+                        bullet.X = 10000;
+                        bullet.Y = 10000;
+
+                        IDestroyable invader = collidable as IDestroyable;
+
+          
+                        if (invader !=null)
+                        {
+                            InvadersToDestroy.Add(invader as IDrawable);
+                        }
+                    }
+                }
+            }
+            foreach(var invader in InvadersToDestroy)
+            {
+                drawables.Remove(invader);
             }
             PlayerShooter.Update();
         }
@@ -174,7 +204,7 @@ namespace SI
     }
 
     //Add idestroyable
-    public class Sprite : IDrawable
+    public class Sprite : IDrawable, ICollidable
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -192,6 +222,31 @@ namespace SI
         public void Draw(CanvasDrawingSession canvas)
         {
             canvas.DrawEllipse(X, Y, Radius, Radius, Color, 5);
+        }
+
+        bool ICollidable.Collides(int x, int y, int width, int height)
+        {
+            return x >= X-20 && x <= X+20 && y==Y;
+        }
+
+        bool ICollidable.CollidesLeftEdge(int x, int y)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool ICollidable.CollidesRightEdge(int x, int y)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool ICollidable.CollidesTopEdge(int x, int y)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool ICollidable.CollidesBottomEdge(int x, int y)
+        {
+            throw new NotImplementedException();
         }
 
     }
