@@ -29,13 +29,38 @@ namespace SI
         private Bullet bullet;
         private ship PlayerShooter; 
         private List<IDrawable> drawables;
-
+        public static int LEFT_EDGE = 10;
+        public static int TOP_EDGE = 10;
+        public static int RIGHT_EDGE = 790;
+        public static int BOTTOM_EDGE = 450;
+        
         public Play()
         {
             drawables = new List<IDrawable>();
             bullet = new Bullet(100, 100, Colors.White);
             drawables.Add(bullet);
+
+            var leftWall = new Wall(LEFT_EDGE, TOP_EDGE, LEFT_EDGE, BOTTOM_EDGE, Colors.Blue);
+            drawables.Add(leftWall);
+
+            var rightWall = new Wall(RIGHT_EDGE, TOP_EDGE, RIGHT_EDGE, BOTTOM_EDGE, Colors.Blue);
+            drawables.Add(rightWall);
+
+            PlayerShooter = new ship(LEFT_EDGE + RIGHT_EDGE / 2, BOTTOM_EDGE, 50, 5, Colors.Red);
+            drawables.Add(PlayerShooter);
         }
+
+        public void SetPaddleTravelingLeftward(bool travelingLeftward)
+        {
+            PlayerShooter.TravelingLeftward = travelingLeftward;
+        }
+
+        public void SetPaddleTravelingRightward(bool travelingRightward)
+        {
+            PlayerShooter.TravelingRightWard = travelingRightward;
+        }
+
+        
 
         public void DrawGame(CanvasDrawingSession canvas)
         {
@@ -84,18 +109,19 @@ namespace SI
         public int y1 { get; set; }
         public int x2 { get; set; }
         public int y2 { get; set; }
-
-        public Wall(int X1, int Y1, int X2, int Y2)
+        public Color color { get; set; }
+        public Wall(int X1, int Y1, int X2, int Y2, Color coloR)
         {
             x1 = X1;
             y1 = Y1;
             x2 = X2;
             y2 = Y2;
+            color = coloR;
         }
 
         public void Draw(CanvasDrawingSession canvas)
         {
-            canvas.DrawLine(x1, y1, x2, y2, WIDTH);
+            canvas.DrawLine(x1, y1, x2, y2, color, WIDTH);
         }
         public bool CollidesLeftEdge(int x, int y)
         {
@@ -125,16 +151,17 @@ namespace SI
         public int Width { get; set; }
 
         public int Height { get; set; }
-
+        public Color color { get; set; }
         public bool TravelingLeftward { get; set; }
         public bool TravelingRightWard { get; set; }
 
-        public ship(int x, int y, int width, int height)
+        public ship(int x, int y, int width, int height, Color coloR)
         {
             X = x;
             Y = y;
             Width = width;
             Height = height;
+            color = coloR;
             TravelingLeftward = false;
             TravelingRightWard = false;
         }
@@ -153,7 +180,7 @@ namespace SI
 
         public void Draw(CanvasDrawingSession canvas)
         {
-            throw new NotImplementedException();
+            canvas.DrawRectangle(X, Y, Width, Height, color, 3);
         }
 
         public bool CollidesLeftEdge(int x, int y)
@@ -170,6 +197,26 @@ namespace SI
         }
 
         public bool CoolidesBottomEdge(int x, int y)
+        {
+            return x >= X && x <= X + Width && y >= Y && y <= Y + Height;
+        }
+
+        bool ICollidable.CollidesLeftEdge(int x, int y)
+        {
+            return x >= X && x <= X + Width && y >= Y && y <= Y + Height;
+        }
+
+        bool ICollidable.CollidesRightEdge(int x, int y)
+        {
+            return x >= X && x <= X + Width && y >= Y && y <= Y + Height;
+        }
+
+        bool ICollidable.CollidesTopEdge(int x, int y)
+        {
+            return x >= X && x <= X + Width && y >= Y && y <= Y + Height;
+        }
+
+        bool ICollidable.CollidesBottomEdge(int x, int y)
         {
             return x >= X && x <= X + Width && y >= Y && y <= Y + Height;
         }
