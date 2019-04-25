@@ -11,8 +11,11 @@
 
     <Grid>
         <canvas:CanvasAnimatedControl x:Name="canvas" Draw="Canvas_Draw" Margin="0,0,10,10" Loaded="Canvas_Loaded" Update="Canvas_Update" />
-        <Button x:Name="button" Content="shoot" HorizontalAlignment="Left" Margin="413,475,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="0.619,2.438"/>
-        
+        <Button x:Name="button" Content="shoot" HorizontalAlignment="Left" Margin="413,475,0,0" VerticalAlignment="Top" Click="Button_Click" RenderTransformOrigin="0.619,2.438" Foreground="#FF3AFF00" BorderBrush="{x:Null}" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="#99FFFFFF" FontWeight="Bold" FontSize="18" Background="Black"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="space.jpg"/>
+        </Grid.Background>
+
     </Grid>
 
 </Page>

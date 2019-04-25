@@ -8,9 +8,9 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="169" Margin="431,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FocusVisualPrimaryBrush="#FF40FF00" FontFamily="Castellar" FontSize="24" Foreground="#FF37FF1D" FontWeight="Bold"><Run Text="Jasmine"/><LineBreak/><Run Text="Mazen"/><LineBreak/><Run Text="Agi"/><LineBreak/><Run Text="Arthur"/></TextBlock>
-        <Button x:Name="button" Content="&lt;- Back" HorizontalAlignment="Left" Margin="70,44,0,0" VerticalAlignment="Top" Height="43" Width="132" Foreground="#FF40FF00" FontSize="20" FontFamily="Castellar" Click="Button_Click"/>
-       
+    <Grid Background="Black">
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="169" Margin="431,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" FocusVisualPrimaryBrush="White" FontFamily="Castellar" FontSize="24" Foreground="White" FontWeight="Bold" FocusVisualSecondaryBrush="{x:Null}" SelectionHighlightColor="{x:Null}"><Run Text="Jasmine"/><LineBreak/><Run Text="Mazen"/><LineBreak/><Run Text="Agi"/><LineBreak/><Run Text="Arthur"/></TextBlock>
+        <Button x:Name="button" Content="&lt;- Back" HorizontalAlignment="Left" Margin="70,44,0,0" VerticalAlignment="Top" Height="43" Width="132" Foreground="#FF40FF00" FontSize="20" FontFamily="Castellar" Click="Button_Click" BorderBrush="Black" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Background="Black"/>
+
     </Grid>
 </Page>

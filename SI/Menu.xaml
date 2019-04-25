@@ -10,11 +10,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
-        <Button x:Name="button" Content="How To Play" HorizontalAlignment="Center" VerticalAlignment="Top" Height="48" Width="136" Click="Button_Click" FontFamily="Castellar" FontWeight="Bold" Margin="0,211,0,0"/>
-        <Button x:Name="button1" Content="Play!" HorizontalAlignment="Center" Margin="0,421,0,0" VerticalAlignment="Top" Height="48" Width="136" Click="Button1_Click" FontFamily="Castellar" FontWeight="Bold" FontSize="16"/>
-        <Button x:Name="button2" Content="Credits" HorizontalAlignment="Center" Margin="0,315,0,0" VerticalAlignment="Top" Width="136" Height="48" FontFamily="Castellar" FontSize="16" Click="Button2_Click"/>
+        <Button x:Name="button" Content="How To Play" HorizontalAlignment="Center" VerticalAlignment="Top" Height="48" Width="136" Click="Button_Click" FontFamily="Castellar" FontWeight="Bold" Margin="0,211,0,0" FocusVisualPrimaryBrush="{x:Null}" FocusVisualSecondaryBrush="{x:Null}" Foreground="#FF3AFF00" BorderBrush="Black" Background="Black"/>
+        <Button x:Name="button1" Content="Play!" HorizontalAlignment="Center" Margin="0,421,0,0" VerticalAlignment="Top" Height="48" Width="136" Click="Button1_Click" FontFamily="Castellar" FontWeight="Bold" FontSize="16" FocusVisualPrimaryBrush="{x:Null}" BorderBrush="Black" Foreground="#FF3AFF00" FocusVisualSecondaryBrush="{x:Null}" Background="Black"/>
+        <Button x:Name="button2" Content="Credits" HorizontalAlignment="Center" Margin="0,315,0,0" VerticalAlignment="Top" Width="136" Height="48" FontFamily="Castellar" FontSize="16" Click="Button2_Click" Foreground="#FF3AFF00" FocusVisualPrimaryBrush="{x:Null}" BorderBrush="Black" FocusVisualSecondaryBrush="{x:Null}" FontWeight="Bold" Background="Black"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="69" Margin="298,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="289" SelectionChanged="TextBlock_SelectionChanged" IsHitTestVisible="False" Text="MENU" FontSize="72" FontFamily="Castellar" Foreground="#FF6DFF10" FocusVisualPrimaryBrush="White" FocusVisualSecondaryBrush="#99FFFFFF" SelectionHighlightColor="#FF80FF00" FontWeight="Bold"/>
 
+        <Grid.Background>
+            <ImageBrush ImageSource="space.jpg"/>
+        </Grid.Background>
 
     </Grid>
 </Page>
