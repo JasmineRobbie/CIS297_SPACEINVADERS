@@ -39,6 +39,7 @@ namespace SI
         public static int TOP_EDGE = 10;
         public static int RIGHT_EDGE = 790;
         public static int BOTTOM_EDGE = 450;
+        private Gamepad Controller;
 
         public Play()
         {
@@ -111,6 +112,14 @@ namespace SI
         {
             bool hit = false;
             bullet.Y -= 3;
+            if(Gamepad.Gamepads.Count >0)
+            {
+                Controller = Gamepad.Gamepads.First();
+                var reading = Controller.GetCurrentReading();
+                PlayerShooter.X += (int)(reading.LeftThumbstickX * 5);
+                PlayerShooter.Y += (int)(reading.LeftThumbstickY * -5);
+                
+            }
             if (PlayerShooter.Shooting)
             {
                 bullet.X = PlayerShooter.X + 35;
