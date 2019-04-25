@@ -260,11 +260,25 @@ namespace SI
         {
             if (TravelingRightward)
             {
-                X += 1;
+                if (X >= 710)
+                {
+                    //STOP MOVING
+                }
+                else
+                {
+                    X += 1;
+                }
             }
             else if (TravelingLeftward)
             {
-                X -= 1;
+                if (X <= 10)
+                {
+                    //STOP MOVING
+                }
+                else
+                {
+                    X -= 1;
+                }
             }
         }
         public void Draw(CanvasDrawingSession canvas)
